@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:52:55 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/04 16:01:54 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:52:44 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_add_back_dl(t_DLIST *list, int content)
 	t_DLIST	*last;
 
 	new_elem = malloc(sizeof(t_DLIST));
+	printf("content = %d \n", content);
 	if (!new_elem)
 		return ;
 	new_elem->content = content;

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:37:59 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/04 16:04:21 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/05 16:58:48 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,23 @@
 
 int	ft_checker(char *str)
 {
-	while (*str)
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		if (!is_digit(*str) || !*str == ' ')
-			return (1);
-		str++;
+		if (ft_isdigit(str[i]) || (str[i] == ' '))
+			printf("baaa");
+		else
+		{
+			if ((str[i] == '+' || str[i] == '-' ) && ft_isdigit(str[i + 1]))
+			{
+				printf("baaaaa");
+			}
+			else
+				return (1);
+		}
+		i++;
 	}
 	return (0);
 }
@@ -30,11 +42,12 @@ t_DLIST	*create_list(char *str)
 	int		temp;
 	t_DLIST	*list;
 
+	list = NULL;
 	temp = 0;
 	i = 0;
-	buffer = ft_split(str, " ");
+	buffer = ft_split(str, ' ');
 	if (!buffer)
-		return (1);
+		return (NULL);
 	while (buffer[i])
 	{
 		temp = ft_atoi(buffer[i]);
@@ -44,4 +57,16 @@ t_DLIST	*create_list(char *str)
 	}
 	free(buffer);
 	return (list);
+}
+
+void	print_lsit(t_DLIST *head)
+{
+	t_DLIST	*node;
+
+	node = head;
+	while (node && node->next)
+	{
+		ft_printf("%d|", node->content);
+		node = node->next;
+	}
 }
