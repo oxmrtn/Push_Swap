@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:45:43 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/05 15:55:15 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/06 18:11:57 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ int	main(int argc, char **argv)
 	while (argv[i])
 	{
 		buffer = ft_strjoin(buffer, argv[i]);
+		buffer = ft_strjoin(buffer, " ");
 		i++;
 	}
 	printf("checker %d\n", ft_checker(buffer));
 	if (ft_checker(buffer))
 		return (ft_printf("Invalid input"), free(buffer), 1);
-	t_DLIST *list = create_list(buffer);
-	print_lsit(list);
+	t_DLIST *stack = create_list(buffer);
+	print_lsit(stack);
+	ft_rotate(&stack);
+	ft_printf("\n");
+	print_lsit(stack);
 }

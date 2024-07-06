@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:37:59 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/05 16:58:48 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/06 18:10:21 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,9 @@ int	ft_checker(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]) || (str[i] == ' '))
-			printf("baaa");
-		else
+		if (!(ft_isdigit(str[i]) || (str[i] == ' ')))
 		{
-			if ((str[i] == '+' || str[i] == '-' ) && ft_isdigit(str[i + 1]))
-			{
-				printf("baaaaa");
-			}
-			else
+			if (!((str[i] == '+' || str[i] == '-' ) && ft_isdigit(str[i + 1])))
 				return (1);
 		}
 		i++;
@@ -51,7 +45,7 @@ t_DLIST	*create_list(char *str)
 	while (buffer[i])
 	{
 		temp = ft_atoi(buffer[i]);
-		ft_add_back_dl(list, temp);
+		ft_add_back_dl(&list, temp);
 		free(buffer[i]);
 		i++;
 	}
@@ -63,8 +57,13 @@ void	print_lsit(t_DLIST *head)
 {
 	t_DLIST	*node;
 
-	node = head;
-	while (node && node->next)
+	node = ft_first_node(head);
+	if (!node)
+	{
+		ft_printf("ici");
+		return ;
+	}
+	while (node)
 	{
 		ft_printf("%d|", node->content);
 		node = node->next;
