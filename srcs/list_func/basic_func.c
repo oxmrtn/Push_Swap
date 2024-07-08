@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:52:55 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/06 18:01:43 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:15:33 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_DLIST	*ft_last_node(t_DLIST *node)
 {
 	t_DLIST	*temp;
-	
+
 	temp = node;
-	while(temp->next)
+	while (temp->next)
 	{
 		temp = temp->next;
 	}
@@ -27,9 +27,11 @@ t_DLIST	*ft_last_node(t_DLIST *node)
 t_DLIST	*ft_first_node(t_DLIST *node)
 {
 	t_DLIST	*temp;
-	
+
 	temp = node;
-	while(temp->prev)
+	if (!node->prev)
+		return (node);
+	while (temp->prev)
 	{
 		temp = temp->prev;
 	}
@@ -45,31 +47,49 @@ void	ft_add_back_dl(t_DLIST **list, int content)
 	if (!new_elem)
 		return ;
 	new_elem->content = content;
+	new_elem->next = NULL;
 	if (!(*list))
 	{
 		*list = new_elem;
 		new_elem->prev = NULL;
-		new_elem->next = NULL;
 	}
 	else
 	{
 		last = ft_last_node(*list);
 		last->next = new_elem;
 		new_elem->prev = last;
-		new_elem->next = NULL;
 	}
 }
 
-void	ft_insert_node(t_DLIST *node, t_DLIST *dest)
+void	ft_insert_node(t_DLIST **dest, t_DLIST *node)
 {
 	t_DLIST	*temp;
-	
-	if (!dest)
+
+	if (!dest || !node)
+		return ;
+	if (*dest == NULL)
 	{
-		dest = node;
+		*dest = node;
+		node->prev = NULL;
+		node->next = NULL;
+		return ;
 	}
-	temp = ft_last_node(dest);
+	temp = ft_last_node(*dest);
 	temp->next = node;
 	node->prev = temp;
 	node->next = NULL;
+}
+
+void	ft_free_chain(t_DLIST *stack)
+{
+	t_DLIST	*temp;
+
+	if (!stack)
+		return ;
+	while (stack)
+	{
+		temp = stack->next;
+		free(stack);
+		stack = temp;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:46:16 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/06 18:10:56 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:00:38 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ int		ft_checker(char *str);
 
 void	ft_add_back_dl(t_DLIST **list, int content);
 void	print_lsit(t_DLIST *head);
-void	ft_insert_node(t_DLIST *node, t_DLIST *dest);
-void	ft_swap_a_b(t_DLIST *stack);
-void	ft_push(t_DLIST *to_push, t_DLIST *dest);
+void	ft_insert_node(t_DLIST **node, t_DLIST *dest);
+void	ft_swap_a_b(t_DLIST **stack);
+void	ft_push(t_DLIST **to_push, t_DLIST **dest);
 void	ft_rotate(t_DLIST **stack);
-void	ft_reverse_rotate(t_DLIST *stack);
+void	ft_reverse_rotate(t_DLIST **stack);
+void	ft_free_chain(t_DLIST *stack);
 
 #endif

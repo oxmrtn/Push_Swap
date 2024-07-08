@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:37:59 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/06 18:10:21 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:08:53 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_DLIST	*create_list(char *str)
 		i++;
 	}
 	free(buffer);
+	free(str);
 	return (list);
 }
 
@@ -57,10 +58,10 @@ void	print_lsit(t_DLIST *head)
 {
 	t_DLIST	*node;
 
-	node = ft_first_node(head);
+	node = head;
 	if (!node)
 	{
-		ft_printf("ici");
+		ft_printf("\n");
 		return ;
 	}
 	while (node)
@@ -68,4 +69,5 @@ void	print_lsit(t_DLIST *head)
 		ft_printf("%d|", node->content);
 		node = node->next;
 	}
+	ft_printf("\n");
 }
