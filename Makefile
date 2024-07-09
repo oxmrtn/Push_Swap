@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 15:16:33 by mtrullar          #+#    #+#              #
-#    Updated: 2024/07/06 17:05:33 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/07/09 14:10:35 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC_FILE =	list_func/basic_func.c			\
 			parsing/check_requirements.c	\
 			swap_func/composed_swap.c		\
 			swap_func/swap.c 				\
+			algo/sort_algo.c				\
 			main.c							\
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRC_FILE))
@@ -63,6 +64,7 @@ $(OBJF):
 	@mkdir -p $(OBJ_DIR)/list_func
 	@mkdir -p $(OBJ_DIR)/parsing
 	@mkdir -p $(OBJ_DIR)/swap_func
+	@mkdir -p $(OBJ_DIR)/algo
 
 clean:
 	@$(RM) $(OBJ_DIR)

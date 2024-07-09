@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:37:59 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/08 16:08:53 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:34:34 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	print_lsit(t_DLIST *head)
 {
 	t_DLIST	*node;
 
-	node = head;
+	node = ft_last_node(head);
 	if (!node)
 	{
 		ft_printf("\n");
@@ -66,8 +66,8 @@ void	print_lsit(t_DLIST *head)
 	}
 	while (node)
 	{
-		ft_printf("%d|", node->content);
-		node = node->next;
+		ft_printf("|%d|\n", node->content);
+		node = node->prev;
 	}
 	ft_printf("\n");
 }

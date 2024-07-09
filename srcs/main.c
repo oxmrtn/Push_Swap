@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:45:43 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/08 16:05:24 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:35:58 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,49 +33,9 @@ int	main(int argc, char **argv)
 	t_DLIST *stack = create_list(buffer);
 	t_DLIST *stackB = NULL;
 	print_lsit(stack);
-	ft_printf("----------ROTATE-A-----------\n");
-	ft_rotate(&stack);
-	ft_rotate(&stackB);
-	ft_printf("A = ");
+	sort_5(&stack, &stackB);
+	//sort_3(&stack);
 	print_lsit(stack);
-	ft_printf("B = ");
-	print_lsit(stackB);
-	ft_printf("----------RROTATE-A----------\n");
-	ft_reverse_rotate(&stack);
-	ft_printf("A = ");
-	print_lsit(stack);
-	ft_printf("B = ");
-	print_lsit(stackB);
-	ft_printf("------------SWAP-A----------\n");
-	ft_swap_a_b(&stack);
-	ft_printf("A = ");
-	print_lsit(stack);
-	ft_printf("B = ");
-	print_lsit(stackB);
-	ft_printf("------------PUSH-A->B-------\n");
-	ft_push(&stack, &stackB);
-	ft_printf("A = ");
-	print_lsit(stack);
-	ft_printf("B = ");
-	print_lsit(stackB);
-	ft_printf("------------PUSH------------\n");
-	ft_push(&stack, &stackB);
-	ft_printf("A = ");
-	print_lsit(stack);
-	ft_printf("B = ");
-	print_lsit(stackB);
-	ft_printf("------------PUSH------------\n");
-	ft_push(&stack, &stackB);
-	ft_printf("A =");
-	print_lsit(stack);
-	ft_printf("B =");
-	print_lsit(stackB);
-	ft_printf("------------PUSH-B>A---------\n");
-	ft_push(&stackB, &stack);
-	ft_printf("A = ");
-	print_lsit(stack);
-	ft_printf("B = ");
-	print_lsit(stackB);
 	ft_free_chain(stack);
 	ft_free_chain(stackB);
 }

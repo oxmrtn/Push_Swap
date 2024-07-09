@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:20:07 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/08 16:13:35 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:54:07 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ft_rotate(t_DLIST **stack)
 	first->prev = last;
 	last->prev->next = NULL;
 	last->next = first;
+	last->prev = NULL;
 	*stack = last;
 }
 
