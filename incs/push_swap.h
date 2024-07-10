@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:46:16 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/09 15:23:27 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:43:38 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_DLIST	*create_list(char *str);
 
 int		main(int argc, char **argv);
 int		ft_checker(char *str);
+int		len_stack(t_DLIST *node);
+int		calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest);
 
 void	ft_add_back_dl(t_DLIST **list, int content);
 void	print_lsit(t_DLIST *head);

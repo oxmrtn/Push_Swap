@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:45:43 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/09 15:35:58 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:14:05 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,18 @@ int	main(int argc, char **argv)
 	t_DLIST *stack = create_list(buffer);
 	t_DLIST *stackB = NULL;
 	print_lsit(stack);
-	sort_5(&stack, &stackB);
+	//sort_5(&stack, &stackB);
 	//sort_3(&stack);
+	ft_push(&stack, &stackB);
+	ft_push(&stack, &stackB);
+	ft_push(&stack, &stackB);
+	ft_push(&stack, &stackB);
+	t_DLIST *node = ft_last_node(stack)->prev->prev;
+	ft_printf("--|%d|--\n\n", node->content);
+	int moov = calc_moov(node, stack, stackB);
+	ft_printf("MOOV =--|%d|--\n\n", moov);
 	print_lsit(stack);
+	print_lsit(stackB);
 	ft_free_chain(stack);
 	ft_free_chain(stackB);
 }

@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 15:16:33 by mtrullar          #+#    #+#              #
-#    Updated: 2024/07/09 14:10:35 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/07/10 13:48:29 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,12 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 SRC_FILE =	list_func/basic_func.c			\
+			list_func/func.c				\
 			parsing/check_requirements.c	\
 			swap_func/composed_swap.c		\
 			swap_func/swap.c 				\
 			algo/sort_algo.c				\
+			algo/calc_mooves.c				\
 			main.c							\
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRC_FILE))
