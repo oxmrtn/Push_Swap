@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:45:43 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/11 15:25:34 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:28:09 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	print_lsit(stackB);
 	ft_rr(stack, stackB);
 	ft_printf("apres deuxieme rotate\n");
-	//ft_push(&stack, &stackB);
+	ft_push(&stack, &stackB);
 	print_lsit(stack);
 	print_lsit(stackB);
 	ft_free_chain(stack);
