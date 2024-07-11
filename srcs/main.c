@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:45:43 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/10 17:14:05 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:25:34 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,23 @@ int	main(int argc, char **argv)
 	ft_push(&stack, &stackB);
 	t_DLIST *node = ft_last_node(stack)->prev->prev;
 	ft_printf("--|%d|--\n\n", node->content);
-	int moov = calc_moov(node, stack, stackB);
-	ft_printf("MOOV =--|%d|--\n\n", moov);
+	t_MOOV	*moov = calc_moov(node, stack, stackB);
+	ft_printf("MOOV =--|%d|--\n\n", moov->nmoov);
+	ft_printf("MOOV TO DO= --|%s|--\n\n", moov->buffer);
+	ft_printf("avant rotate\n");
+	print_lsit(stack);
+	print_lsit(stackB);
+	ft_rr(stack, stackB);
+	ft_printf("apres premiere rotate\n");
+	print_lsit(stack);
+	print_lsit(stackB);
+	ft_rr(stack, stackB);
+	ft_printf("apres deuxieme rotate\n");
+	//ft_push(&stack, &stackB);
 	print_lsit(stack);
 	print_lsit(stackB);
 	ft_free_chain(stack);
 	ft_free_chain(stackB);
+	free(moov->buffer);
+	free(moov);
 }

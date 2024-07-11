@@ -6,35 +6,91 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:48:44 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/10 16:40:32 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:27:18 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/push_swap.h"
-int	hr_moov(int	count, int count_dest)
+
+void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 {
+	char	*buffer;
+
+	buffer = NULL;
+	while (count != 0 || count_dest != 0)
+	{
+		if (count < 0 && count_dest < 0)
+		{
+			buffer = ft_strjoin(buffer, " rr");
+			count++;
+			count_dest++;
+		}
+		else if (count > 0 && count_dest > 0)
+		{
+			buffer = ft_strjoin(buffer, " rrr");
+			count--;
+			count_dest--;
+		}
+		else
+		{
+			if (count > 0)
+			{
+				buffer = ft_strjoin(buffer, " rra");
+				count--;
+			}
+			else if (count < 0)
+			{
+				buffer = ft_strjoin(buffer, " ra");
+				count++;
+			}
+			if (count_dest > 0)
+			{
+				buffer = ft_strjoin(buffer, "rrb");
+				count_dest--;
+			}
+			else if (count_dest < 0)
+			{
+				buffer = ft_strjoin(buffer, " rb");
+				count_dest++;
+			}
+		}
+	}
+	buffer = ft_strjoin(buffer, " pa");
+	moov->buffer = buffer;
+	
+}
+
+t_MOOV	*hr_moov(int	count, int count_dest)
+{
+	t_MOOV	*moov;
+
+	moov = malloc(sizeof(t_MOOV));
+	if (!moov)
+		return (NULL);
+	moov_to_do(count, count_dest, moov);
 	if (count <= 0 && count_dest <= 0)
 	{
 		if (count < count_dest)
-			return ((-1 * count) + 1);
+			return (moov->nmoov = (-1 * count) + 1, moov);
 		else
-			return ((-1 * count_dest) + 1);
+			return (moov->nmoov = (-1 * count_dest) + 1, moov);
 	}
 	else if (count >= 0 && count_dest >= 0)
 	{
 		if (count > count_dest)
-			return (count + 1);
+			return (moov->nmoov = count + 1, moov);
 		else
-			return (count_dest + 1);
+			return (moov->nmoov = count_dest + 1, moov);
 	}
 	else
 	{
 		if (count < 0)
-			return ((-1 * count) + count_dest);
+			return (moov->nmoov = (-1 * count) + count_dest, moov);
 		else
-			return (count + (-1 * count_dest));
+			return (moov->nmoov = count + (-1 * count_dest), moov);
 	}
 }
+
 int	find_place(t_DLIST *node, t_DLIST *dest)
 {
 	t_DLIST	*temp;
@@ -60,7 +116,7 @@ int	find_place(t_DLIST *node, t_DLIST *dest)
 	return (count);
 }
 
-int	calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest)
+t_MOOV	*calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest)
 {
 	int			count;
 	int			count_dest;
