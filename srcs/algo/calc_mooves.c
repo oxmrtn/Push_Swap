@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:48:44 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/12 14:42:38 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/13 00:31:24 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_MOOV	*hr_moov(int	count, int count_dest)
 	}
 }
 
-int	find_place(t_DLIST *node, t_DLIST *dest)
+int	find_place_second(t_DLIST *node, t_DLIST *dest)
 {
 	t_DLIST	*temp;
 	int		i;
@@ -141,6 +141,6 @@ t_MOOV	*calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest)
 		count = -(med - (i + 1));
 	else
 		count = (i + 1);
-	count_dest = find_place(node, dest);
+	count_dest = find_place_second(node, dest);
 	return (hr_moov(count, count_dest));
 }

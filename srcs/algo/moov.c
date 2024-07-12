@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:41:19 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/12 15:07:11 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/13 00:24:23 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int     find_min(t_DLIST *stack)
 {
-     t_DLIST *temp;
-    int min;
-    int i;
-    int j;
+    t_DLIST *temp;
+    int     min;
+    int     i;
+    int     j;
     
     min = 100000;
     i = 1;
@@ -41,7 +41,6 @@ void    in_order(t_DLIST **stack)
     int i;
 
     i = find_min(*stack);
-     ft_printf("MIN IS = %d\n", i);
     if (i <= len_stack(*stack) / 2)
     {
         while (i > 0)

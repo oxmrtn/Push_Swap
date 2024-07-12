@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:46:16 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/12 15:01:07 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/13 00:27:14 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ typedef struct t_MOOV
 t_DLIST	*ft_last_node(t_DLIST *node);
 t_DLIST	*ft_first_node(t_DLIST *node);
 t_DLIST	*create_list(char *str);
+t_MOOV	*calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest);
 
+int     find_min(t_DLIST *stack);
 int		main(int argc, char **argv);
 int		ft_checker(char *str);
 int		len_stack(t_DLIST *node);
-t_MOOV	*calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest);
 
+void    end_sort(t_DLIST **stackA, t_DLIST **stackB);
 void    in_order(t_DLIST **stack);
 void    find_best_moov(t_DLIST **stackA, t_DLIST **stacKB);
 void	ft_add_back_dl(t_DLIST **list, int content);
