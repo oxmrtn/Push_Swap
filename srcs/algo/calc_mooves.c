@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:48:44 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/11 15:27:18 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:42:38 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 	{
 		if (count < 0 && count_dest < 0)
 		{
-			buffer = ft_strjoin(buffer, " rr");
+			buffer = ft_strjoin(buffer, " rro");
 			count++;
 			count_dest++;
 		}
@@ -55,7 +55,7 @@ void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 			}
 		}
 	}
-	buffer = ft_strjoin(buffer, " pa");
+	buffer = ft_strjoin(buffer, " pb");
 	moov->buffer = buffer;
 	
 }
@@ -98,21 +98,21 @@ int	find_place(t_DLIST *node, t_DLIST *dest)
 	int		count;
 	const int	med = len_stack(dest);
 	
-	temp = dest;
+	temp = ft_last_node(dest);
 	i = 0;
 	while(temp && (node->content < temp->content))
 	{
-		temp = temp->next;
+		temp = temp->prev;
 		i++;
 	}
 	if (i == 0)
-		count = -1;
-	else if (i == (med))
 		count = 0;
+	else if (i == (med))
+		count = -1;
 	else if (i > (med) / 2)
-		count = med - (i + 1);
-	else
 		count = -(i);
+	else
+		count = med - (i + 1);
 	return (count);
 }
 

@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 15:16:33 by mtrullar          #+#    #+#              #
-#    Updated: 2024/07/10 13:48:29 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/07/12 12:58:10 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC_FILE =	list_func/basic_func.c			\
 			swap_func/swap.c 				\
 			algo/sort_algo.c				\
 			algo/calc_mooves.c				\
+			algo/moov.c						\
 			main.c							\
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRC_FILE))
