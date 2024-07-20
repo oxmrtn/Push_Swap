@@ -6,35 +6,11 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:41:19 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/13 00:24:23 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/15 19:02:25 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/push_swap.h"
-
-int     find_min(t_DLIST *stack)
-{
-    t_DLIST *temp;
-    int     min;
-    int     i;
-    int     j;
-    
-    min = 100000;
-    i = 1;
-    j = 0;
-    temp = ft_last_node(stack);
-    while (temp)
-    {
-        if (min > temp->content)
-        {
-            min = temp->content;
-            j = i;
-        }
-        temp = temp->prev;
-        i++;
-    }
-    return (j);
-}
 
 void    in_order(t_DLIST **stack)
 {
@@ -79,7 +55,7 @@ void    execute_moov(char *str, t_DLIST **stackA, t_DLIST **stackB)
             ft_push(stackB, stackA);
         else if (!ft_strncmp(moov[i], "rrr", ft_strlen(moov[i])))
             ft_rrr(*stackA, *stackB);
-        else if (!ft_strncmp(moov[i], "rro", ft_strlen(moov[i])))
+        else if (!ft_strncmp(moov[i], "rr", ft_strlen(moov[i])))
             ft_rr(*stackA, *stackB);
         else if (!ft_strncmp(moov[i], "ra", ft_strlen(moov[i])))
             ft_rotate(stackA);

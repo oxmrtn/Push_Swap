@@ -6,12 +6,13 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:48:44 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/13 00:31:24 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:24:24 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/push_swap.h"
 
+//Merge into a buffer the moov to do
 void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 {
 	char	*buffer;
@@ -21,7 +22,7 @@ void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 	{
 		if (count < 0 && count_dest < 0)
 		{
-			buffer = ft_strjoin(buffer, " rro");
+			buffer = ft_strjoin(buffer, " rr");
 			count++;
 			count_dest++;
 		}
@@ -60,7 +61,9 @@ void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 	
 }
 
-t_MOOV	*hr_moov(int	count, int count_dest)
+//Return a struct containing a buffer with moove
+//to do and number of moov to moov a certain element
+t_MOOV	*hr_moov(int count, int count_dest)
 {
 	t_MOOV	*moov;
 
@@ -91,56 +94,13 @@ t_MOOV	*hr_moov(int	count, int count_dest)
 	}
 }
 
-int	find_place_second(t_DLIST *node, t_DLIST *dest)
-{
-	t_DLIST	*temp;
-	int		i;
-	int		count;
-	const int	med = len_stack(dest);
-	
-	temp = ft_last_node(dest);
-	i = 0;
-	while(temp && (node->content < temp->content))
-	{
-		temp = temp->prev;
-		i++;
-	}
-	if (i == 0)
-		count = 0;
-	else if (i == (med))
-		count = -1;
-	else if (i > (med) / 2)
-		count = -(i);
-	else
-		count = med - (i + 1);
-	return (count);
-}
-
+//Meta func that contains every func
 t_MOOV	*calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest)
 {
 	int			count;
 	int			count_dest;
-	int			i;
-	const int	med = len_stack(origin);
-	t_DLIST		*tmp;
 
-	tmp = origin;
-	i = 0;
-	count = 0;
-	count_dest = 0;
-	while (tmp != node)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	if (i == 0)
-		count = -1;
-	else if (i == (med - 1))
-		count = 0;
-	else if (i >= (med) / 2)
-		count = -(med - (i + 1));
-	else
-		count = (i + 1);
-	count_dest = find_place_second(node, dest);
+	count = bring_it_to_top(origin, node);
+	count_dest = index_to_moov(dest, node);
 	return (hr_moov(count, count_dest));
 }

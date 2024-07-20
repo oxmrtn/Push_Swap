@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:19:34 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/09 16:45:46 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/13 18:40:48 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	sort_3(t_DLIST **stackA)
 		}
 		else
 		{
-			ft_reverse_rotate(stackA);
+			ft_rotate(stackA);
 			ft_printf("rra\n");
 		}
 	}

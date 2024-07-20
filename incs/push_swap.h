@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:46:16 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/13 00:27:14 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:24:03 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,15 @@ t_DLIST	*ft_first_node(t_DLIST *node);
 t_DLIST	*create_list(char *str);
 t_MOOV	*calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest);
 
-int     find_min(t_DLIST *stack);
-int		main(int argc, char **argv);
+int		what_max(t_DLIST *stack);
+int		find_max(t_DLIST *stack);
+int		what_min(t_DLIST *stack);
+int		find_min(t_DLIST *stack);
 int		ft_checker(char *str);
 int		len_stack(t_DLIST *node);
+int 	find_place(t_DLIST *stack, t_DLIST *node);
+int		index_to_moov(t_DLIST *stack, t_DLIST *node);
+int 	bring_it_to_top(t_DLIST *stack, t_DLIST *node);
 
 void    end_sort(t_DLIST **stackA, t_DLIST **stackB);
 void    in_order(t_DLIST **stack);

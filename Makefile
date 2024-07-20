@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 15:16:33 by mtrullar          #+#    #+#              #
-#    Updated: 2024/07/13 00:28:21 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/07/17 14:08:42 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ SRC_FILE =	list_func/basic_func.c			\
 			algo/calc_mooves.c				\
 			algo/moov.c						\
 			algo/end_sort.c					\
+			utils/stack_utils.c				\
+			utils/algo_utils.c				\
 			main.c							\
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRC_FILE))
@@ -69,6 +71,7 @@ $(OBJF):
 	@mkdir -p $(OBJ_DIR)/parsing
 	@mkdir -p $(OBJ_DIR)/swap_func
 	@mkdir -p $(OBJ_DIR)/algo
+	@mkdir -p $(OBJ_DIR)/utils
 
 clean:
 	@$(RM) $(OBJ_DIR)
