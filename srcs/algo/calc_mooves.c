@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:48:44 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/17 18:24:24 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/21 00:35:36 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 			}
 			if (count_dest > 0)
 			{
-				buffer = ft_strjoin(buffer, "rrb");
+				buffer = ft_strjoin(buffer, " rrb");
 				count_dest--;
 			}
 			else if (count_dest < 0)

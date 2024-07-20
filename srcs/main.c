@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:45:43 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/17 14:07:00 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/21 00:06:52 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	main(int argc, char **argv)
 	//sort_3(&stack);
 	ft_push(&stack, &stackB);
 	ft_push(&stack, &stackB);
+	if (stackB->content > stackB->next->content)
+		ft_swap_a_b(&stackB);
 	ft_printf("---------STACK A--------\n\n");
 	print_lsit(stack);
 	ft_printf("------------------------\n\n");

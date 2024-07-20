@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 19:08:58 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/20 23:55:09 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/21 00:32:02 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int from_top(t_DLIST *stack, int value)
     int     i;
 
     i = 0;
-    node = stack;
-    while (node && node->content < value)
+    node = ft_last_node(stack);
+    while (node && node->content > value)
     {
         node = node->prev;
         i++;
@@ -53,10 +53,11 @@ int find_place(t_DLIST *stack, t_DLIST *node)
     // cur_n = cur->prev;
     i = 0;
     //CAS PARFAIT
+    
     if (from_bottom(stack, node->content) >= from_top(stack, node->content))
         i = from_top(stack, node->content);
     else
-        i = from_bottom(stack, node->content) - len_stack(stack);
+        i = len_stack(stack) - from_bottom(stack, node->content);
     // if (node->content > cur->content && what_min(stack) == stack->content)
     //     i = 0;
     // else if (node->content > what_max(stack))
@@ -90,7 +91,7 @@ int index_to_moov(t_DLIST *stack, t_DLIST *node)
         result = i - len;
     else 
         result = i;
-    printf("result = %d\n", i);
+    ft_printf("result = %d\n", i);
     return (result);
 }
 
