@@ -6,13 +6,13 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 15:16:33 by mtrullar          #+#    #+#              #
-#    Updated: 2024/07/17 14:08:42 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/07/22 15:45:18 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 MAKEFLAGS += --no-print-directory
 
-NAME		=	pushswap
+NAME		=	push_swap
 CC			=	clang
 CFLAGS		=	-Wall -Wextra -Werror -g3
 

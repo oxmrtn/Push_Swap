@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:55:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/17 13:57:01 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:13:21 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int what_max(t_DLIST *stack)
     int     max;
 
     temp = stack;
-    max = 0;
+    max = -2147483647;
     while (temp)
     {
         if (temp->content > max)
@@ -36,7 +36,7 @@ int what_min(t_DLIST *stack)
     int     min;
 
     temp = stack;
-    min = 0;
+    min = 2147483647;
     while (temp)
     {
         if (temp->content < min)
@@ -54,7 +54,7 @@ int find_min(t_DLIST *stack)
     int     i;
     int     j;
     
-    min = 100000;
+    min = 2147483647;
     i = 1;
     j = 0;
     temp = ft_last_node(stack);
@@ -79,7 +79,7 @@ int find_max(t_DLIST *stack)
     int     i;
     int     j;
     
-    max = -10000;
+    max = -2147483647;
     i = 1;
     j = 0;
     temp = ft_last_node(stack);

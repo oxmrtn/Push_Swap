@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:11:49 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/17 14:07:45 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:40:25 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,20 @@ void    make_it_sort(t_DLIST **stack)
 void    end_sort(t_DLIST **stackA, t_DLIST **stackB)
 {
     t_DLIST *top_B;
-    
-    while (len_stack(*stackB) != 0)
+    t_DLIST	*top_A;
+	
+
+    while (*stackB)
     {
         top_B = ft_last_node(*stackB);
-        find_place(*stackA , top_B);
-        ft_push(stackB, stackA);
-        ft_printf("pb\n");
+		top_A = ft_last_node(*stackA);
+		while (top_A > top_B)
+		{
+			ft_rotate(stackA);
+			ft_printf("ra\n");
+			top_A = ft_last_node(*stackA);
+		}
+		ft_push(stackB, stackA);
+		ft_printf("pa\n");
     }
-    make_it_sort(stackA);
 }

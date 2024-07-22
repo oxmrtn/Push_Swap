@@ -1,7 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "*.embeddedhtml": "html",
-        "push_swap.h": "c"
-    }
+		"span": "c",
+		"type_traits": "c"
+	}
 }

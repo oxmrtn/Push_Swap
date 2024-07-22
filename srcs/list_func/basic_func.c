@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:52:55 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/09 14:53:39 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:08:26 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_DLIST	*ft_first_node(t_DLIST *node)
 	temp = node;
 	while (temp->prev)
 	{
-		ft_printf("blblblb\n");
 		temp = temp->prev;
 	}
 	return (temp);

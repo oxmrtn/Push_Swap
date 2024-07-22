@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:48:44 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/21 00:35:36 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:14:40 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,22 @@ void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 		{
 			if (count > 0)
 			{
-				buffer = ft_strjoin(buffer, " rra");
+				buffer = ft_strjoin(buffer, " ra");
 				count--;
 			}
 			else if (count < 0)
 			{
-				buffer = ft_strjoin(buffer, " ra");
+				buffer = ft_strjoin(buffer, " rra");
 				count++;
 			}
 			if (count_dest > 0)
 			{
-				buffer = ft_strjoin(buffer, " rrb");
+				buffer = ft_strjoin(buffer, " rb");
 				count_dest--;
 			}
 			else if (count_dest < 0)
 			{
-				buffer = ft_strjoin(buffer, " rb");
+				buffer = ft_strjoin(buffer, " rrb");
 				count_dest++;
 			}
 		}
@@ -100,6 +100,8 @@ t_MOOV	*calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest)
 	int			count;
 	int			count_dest;
 
+	count = 0;
+	count_dest = 0; 
 	count = bring_it_to_top(origin, node);
 	count_dest = index_to_moov(dest, node);
 	return (hr_moov(count, count_dest));

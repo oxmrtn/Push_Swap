@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:32:30 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/06/24 13:16:27 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:54:55 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int		ft_isalnum(int c);
 int		ft_isascii(int c);
 
 int		ft_isprint(int c);
+
+int		ft_ultimate_len(char **str);
 
 char	*ft_itoa(int n);
 

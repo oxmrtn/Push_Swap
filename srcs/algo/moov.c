@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:41:19 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/21 00:22:24 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:44:49 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void    in_order(t_DLIST **stack)
     int i;
 
     i = find_min(*stack);
-    if (i <= len_stack(*stack) / 2)
+    if (i < len_stack(*stack) / 2)
     {
-        while (i > 0)
+        while ((*stack)->content != what_min(*stack))
         {
             ft_rotate(stack);
             ft_printf("rb\n");
@@ -28,14 +28,13 @@ void    in_order(t_DLIST **stack)
     }
     else
     {
-        while (i > 0)
+        while ((*stack)->content != what_min(*stack))
         {
             ft_reverse_rotate(stack);
             ft_printf("rrb\n");
             i--;
         }
     }
-    
 }
 
 void    execute_moov(char *str, t_DLIST **stackA, t_DLIST **stackB)
@@ -65,22 +64,21 @@ void    execute_moov(char *str, t_DLIST **stackA, t_DLIST **stackB)
             ft_rotate(stackB);
         else if (!ft_strncmp(moov[i], "rrb", ft_strlen(moov[i])))
             ft_reverse_rotate(stackB);
-        ft_printf("moov = %s\n", moov[i]);
+        ft_printf("%s\n", moov[i]);
         free(moov[i]);
         i++;
     }
     free(moov);
-    ft_printf("---------STACK A--------\n\n");
+	ft_printf("_________STACK A__________\n");
 	print_lsit(*stackA);
-	ft_printf("------------------------\n\n");
-    ft_printf("---------STACK B--------\n\n");
+	ft_printf("__________________________\n");
+	ft_printf("_________STACK B__________\n");
 	print_lsit(*stackB);
-	ft_printf("------------------------\n\n");
+	ft_printf("__________________________\n");
 }
 
 void    find_best_moov(t_DLIST **stackA, t_DLIST **stacKB)
 {
-    int     i;
     t_MOOV  *res;
     t_MOOV  *temp;
     t_DLIST *node;
@@ -88,25 +86,26 @@ void    find_best_moov(t_DLIST **stackA, t_DLIST **stacKB)
     res = malloc(sizeof(t_MOOV));
     if (!res)
         return ;
-    res->nmoov = 10000;
-    i = 1;
+    res->nmoov = 2147483647;
     node = ft_last_node(*stackA);
-    while (node && i > 0)
+    while (node)
     {
         temp = calc_moov(node, *stackA, *stacKB);
         if (temp->nmoov < res->nmoov)
         {
+			ft_printf("NODE = %d , NBR = %d, moovs = %s\n", node->content, temp->nmoov, temp->buffer);
             res->nmoov = temp->nmoov;
+			if (res->buffer)
+				free(res->buffer);
             res->buffer = ft_strdup(temp->buffer);
-            res->node = node;
-            i = res->nmoov;
         }
-        i--;
-        node = node->next;
+        node = node->prev;
         free(temp->buffer);
         free(temp);
     }
+	ft_printf("buffer = %s\n", res->buffer);
     execute_moov(res->buffer, stackA, stacKB);
-    free(res->buffer);
+	if (res->buffer)
+    	free(res->buffer);
     free(res);
 }

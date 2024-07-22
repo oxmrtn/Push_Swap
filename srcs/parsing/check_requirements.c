@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:37:59 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/09 14:34:34 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:02:16 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,15 @@ t_DLIST	*create_list(char *str)
 	buffer = ft_split(str, ' ');
 	if (!buffer)
 		return (NULL);
-	while (buffer[i])
+	while(buffer[i])
+		i++;
+	i--;
+	while (i >= 0)
 	{
 		temp = ft_atoi(buffer[i]);
 		ft_add_back_dl(&list, temp);
 		free(buffer[i]);
-		i++;
+		i--;
 	}
 	free(buffer);
 	free(str);

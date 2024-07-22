@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 20:58:55 by mtrullar          #+#    #+#              #
-#    Updated: 2024/07/12 12:39:34 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/07/22 16:55:16 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ MAKEFLAGS += --no-print-directory
 
 NAME		=	libcustomft.a
 CC			=	clang
-CFLAGS		=	-Wall -Wextra -Werror -g3 -arch arm64
+CFLAGS		=	-Wall -Wextra -Werror -g3
 
 #Folders
 INCLUDE		=	incs/
@@ -79,7 +79,8 @@ LIBFTSRC = 	ft_atoi.c	 			\
 			ft_lstdelone.c 			\
 			ft_lstclear.c 			\
 			ft_lstiter.c 			\
-			ft_lstmap.c
+			ft_lstmap.c				\
+			ft_ultimate_len.c		\
 
 PRINTFSRC = ft_print_pointer.c		\
 			ft_printf.c				\
