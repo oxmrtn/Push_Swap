@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 15:16:33 by mtrullar          #+#    #+#              #
-#    Updated: 2024/07/22 15:45:18 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/07/23 17:34:42 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ INCLUDE		=	incs/
 SRCS_DIR	=	srcs/
 LIBFT		= 	libft/
 OBJ_DIR		=	obj/
+OBJ_BONUS_DIR   =   obj_bonus/
 
 RM			=	@rm -rf
 
@@ -40,17 +41,20 @@ SRC_FILE =	list_func/basic_func.c			\
 			parsing/check_requirements.c	\
 			swap_func/composed_swap.c		\
 			swap_func/swap.c 				\
-			algo/sort_algo.c				\
 			algo/calc_mooves.c				\
 			algo/moov.c						\
-			algo/end_sort.c					\
 			utils/stack_utils.c				\
 			utils/algo_utils.c				\
 			main.c							\
 
+SRC_BONUS_FILE =
+			srcs_checker/main.c				\
+			srcs_checker/execute_moov.c		\		
+
 SRCS		= $(addprefix $(SRCS_DIR), $(SRC_FILE))
 OBJ			= $(addprefix $(OBJ_DIR), $(SRC_FILE:.c=.o))
 
+OBJ_BONUS	= $(addprefix $(OBJ_BONUS_DIR), $(SRC_FILE:.c=.o))
 
 OBJF		=	.cache_exists
 
@@ -73,6 +77,8 @@ $(OBJF):
 	@mkdir -p $(OBJ_DIR)/algo
 	@mkdir -p $(OBJ_DIR)/utils
 
+checker : 
+	
 clean:
 	@$(RM) $(OBJ_DIR)
 	@echo "$(BLUE)Object files cleaned!$(DEF_COLOR)"

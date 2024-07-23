@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moov.c                                             :+:      :+:    :+:   */
+/*   execute_moov.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 12:41:19 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/23 15:59:03 by mtrullar         ###   ########.fr       */
+/*   Created: 2024/07/23 17:23:33 by mtrullar          #+#    #+#             */
+/*   Updated: 2024/07/23 17:26:02 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/push_swap.h"
 
-// Just an other part of execute_moov
-void	execute_moov_bis(char **moov, int *i, t_DLIST **sA, t_DLIST **sB)
+void	execute_check_bis(char **moov, int *i, t_DLIST **sA, t_DLIST **sB)
 {
 	if (!ft_strncmp(moov[*i], "pb", ft_strlen(moov[*i])))
 		ft_push(sA, sB);
@@ -37,13 +36,13 @@ void	execute_moov_bis(char **moov, int *i, t_DLIST **sA, t_DLIST **sB)
 }
 
 //This function execute the list of moov in str
-void	execute_moov(char *str, t_DLIST **stackA, t_DLIST **stackB)
+void	execute_check_moov(char *str, t_DLIST **stackA, t_DLIST **stackB)
 {
 	char	**moov;
 	int		i;
 
 	i = 0;
-	moov = ft_split(str, ' ');
+	moov = ft_split(str, '\n');
 	if (!moov)
 		return ;
 	while (moov[i])
@@ -51,44 +50,4 @@ void	execute_moov(char *str, t_DLIST **stackA, t_DLIST **stackB)
 		execute_moov_bis(moov, &i, stackA, stackB);
 	}
 	free(moov);
-}
-
-// Just an other part of find_best_moov
-void	find_best_moov_bis(t_MOOV *res, t_DLIST **stackA, t_DLIST **stackB)
-{
-	execute_moov(res->buffer, stackA, stackB);
-	if (res->buffer)
-		free(res->buffer);
-	free(res);
-}
-
-// This function test every moves for the differents nodes and execute 
-// the best option
-void	find_best_moov(t_DLIST **stackA, t_DLIST **stackB)
-{
-	t_MOOV	*res;
-	t_MOOV	*temp;
-	t_DLIST	*node;
-
-	res = malloc(sizeof(t_MOOV));
-	if (!res)
-		return ;
-	res->nmoov = 2147483647;
-	res->buffer = NULL;
-	node = *stackA;
-	while (node)
-	{
-		temp = calc_moov(node, *stackA, *stackB);
-		if (temp->nmoov < res->nmoov)
-		{
-			res->nmoov = temp->nmoov;
-			if (res->buffer)
-				free(res->buffer);
-			res->buffer = ft_strdup(temp->buffer);
-		}
-		node = node->next;
-		free(temp->buffer);
-		free(temp);
-	}
-	find_best_moov_bis(res, stackA, stackB);
 }

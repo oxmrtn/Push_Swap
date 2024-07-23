@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:46:12 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/10 15:25:20 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:01:24 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	len_stack(t_DLIST *node)
 	if (!node)
 		return (0);
 	temp = node;
-	while(temp->next)
+	while (temp->next)
 	{
 		temp = temp->next;
 		i++;

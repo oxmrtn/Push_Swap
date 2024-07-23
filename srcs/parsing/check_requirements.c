@@ -6,12 +6,33 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:37:59 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/22 17:02:16 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/23 17:04:22 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/push_swap.h"
 
+int	no_duplicate(char **buffer)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (buffer[i])
+	{
+		j = i + 1;
+		while (buffer[j])
+		{
+			if (ft_strncmp(buffer[i], buffer[j], ft_strlen(buffer[i]) + 1) == 0)
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+// This function check if the list only contains int
 int	ft_checker(char *str)
 {
 	int	i;
@@ -42,7 +63,7 @@ t_DLIST	*create_list(char *str)
 	buffer = ft_split(str, ' ');
 	if (!buffer)
 		return (NULL);
-	while(buffer[i])
+	while (buffer[i])
 		i++;
 	i--;
 	while (i >= 0)
