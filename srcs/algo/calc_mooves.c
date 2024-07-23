@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:48:44 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/22 18:14:40 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:22:16 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 	{
 		if (count < 0 && count_dest < 0)
 		{
-			buffer = ft_strjoin(buffer, " rr");
+			buffer = ft_strjoin(buffer, " revt");
 			count++;
 			count_dest++;
 		}
 		else if (count > 0 && count_dest > 0)
 		{
-			buffer = ft_strjoin(buffer, " rrr");
+			buffer = ft_strjoin(buffer, " rr");
 			count--;
 			count_dest--;
 		}
@@ -41,7 +41,7 @@ void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 			}
 			else if (count < 0)
 			{
-				buffer = ft_strjoin(buffer, " rra");
+				buffer = ft_strjoin(buffer, " reva");
 				count++;
 			}
 			if (count_dest > 0)
@@ -51,7 +51,7 @@ void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 			}
 			else if (count_dest < 0)
 			{
-				buffer = ft_strjoin(buffer, " rrb");
+				buffer = ft_strjoin(buffer, " revb");
 				count_dest++;
 			}
 		}
@@ -104,5 +104,6 @@ t_MOOV	*calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest)
 	count_dest = 0; 
 	count = bring_it_to_top(origin, node);
 	count_dest = index_to_moov(dest, node);
+	ft_printf("NODE = %d, dest = %d, count = %d \n", node->content, count_dest, count);
 	return (hr_moov(count, count_dest));
 }

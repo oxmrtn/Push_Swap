@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:45:43 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/22 18:34:18 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:52:32 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,12 @@ int	main(int argc, char **argv)
 	// ft_printf("MOOV =--|%d|--\n\n", moov->nmoov);
 	// ft_printf("MOOV TO DO= --|%s|--\n\n", moov->buffer);
 	// ft_printf("avant rotate\n");
-	// print_lsit(stack);
-	// print_lsit(stackB);
+	ft_printf("___STACK A___\n");
+	print_lsit(stack);
+	ft_printf("____________\n");
+	ft_printf("___STACK B___\n");
+	print_lsit(stackB);
+	ft_printf("____________\n");
 	// ft_rr(stack, stackB);
 	// ft_printf("apres premiere rotate\n");
 	// print_lsit(stack);
@@ -61,7 +65,7 @@ int	main(int argc, char **argv)
 	// ft_push(&stack, &stackB);
 	// print_lsit(stack);
 	// print_lsit(stackB);
-	while (stack)
+	while (len_stack(stack) != 0)
 	{
 		find_best_moov(&stack, &stackB);
 	}

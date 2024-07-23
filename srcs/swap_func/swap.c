@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:20:07 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/22 16:29:37 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:08:42 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_push(t_DLIST **to_push, t_DLIST **dest)
 		last->prev->next = NULL;
 	ft_add_back_dl(dest, last->content);
 	free(last);
+	ft_printf("PUSH DONE\n");
 }
 
 void	ft_rotate(t_DLIST **stack)
@@ -72,6 +73,7 @@ void	ft_rotate(t_DLIST **stack)
 	last->next = first;
 	last->prev = NULL;
 	*stack = last;
+	ft_printf("ROTATE DONE\n");
 }
 
 void	ft_reverse_rotate(t_DLIST **stack)
@@ -80,11 +82,11 @@ void	ft_reverse_rotate(t_DLIST **stack)
 	t_DLIST	*first;
 	t_DLIST	*tempo;
 
-	if (!(*stack))
-		return ;
-	if (!(*stack)->next)
+	if (!(*stack) || !(*stack)->next)
 		return ;
 	last = ft_last_node(*stack);
+	if (!last)
+		return ;
 	first = *stack;
 	tempo = first->next;
 	last->next = first;
@@ -92,4 +94,5 @@ void	ft_reverse_rotate(t_DLIST **stack)
 	tempo->prev = NULL;
 	first->next = NULL;
 	*stack = tempo;
+	ft_printf("REVERSE ROTATE DONE\n");
 }
