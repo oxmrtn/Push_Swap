@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:45:43 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/23 16:47:31 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:04:53 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	init(char *buffer)
 	t_DLIST	*stack_b;
 
 	stack_a = create_list(buffer);
+	if (!stack_a)
+		return ;
 	stack_b = NULL;
 	ft_push(&stack_a, &stack_b);
 	ft_push(&stack_a, &stack_b);
@@ -28,9 +30,7 @@ void	init(char *buffer)
 		ft_printf("sb\n");
 	}
 	while (len_stack(stack_a) != 0)
-	{
 		find_best_moov(&stack_a, &stack_b);
-	}
 	in_order(&stack_b);
 	while (stack_b)
 	{

@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:37:59 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/23 17:04:22 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:07:16 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,19 @@ int	ft_checker(char *str)
 	return (0);
 }
 
+t_DLIST	*create_list_extends(char **buffer, char *str)
+{
+	ft_putstr_fd("Error\nAt least one argument is not a int", 2);
+	free_tab(buffer);
+	free(str);
+	return (NULL);
+}
+
 t_DLIST	*create_list(char *str)
 {
 	char	**buffer;
 	int		i;
-	int		temp;
+	long	temp;
 	t_DLIST	*list;
 
 	list = NULL;
@@ -63,12 +71,13 @@ t_DLIST	*create_list(char *str)
 	buffer = ft_split(str, ' ');
 	if (!buffer)
 		return (NULL);
-	while (buffer[i])
+	while (buffer[i + 1])
 		i++;
-	i--;
 	while (i >= 0)
 	{
 		temp = ft_atoi(buffer[i]);
+		if (is_int(temp))
+			return (create_list_extends(buffer, str));
 		ft_add_back_dl(&list, temp);
 		free(buffer[i]);
 		i--;

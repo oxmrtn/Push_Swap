@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:23:33 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/24 16:08:32 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:15:30 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,39 @@ int	assert_moov(char **moov)
 	int	i;
 
 	i = 0;
-	while(moov[i])
+	while (moov[i])
 	{
-	if (!((!ft_strncmp(moov[i], "sa", ft_strlen(moov[i]))) || (!ft_strncmp(moov[i], "sb", ft_strlen(moov[i])))
-		|| (!ft_strncmp(moov[i], "ss", ft_strlen(moov[i]))) || (!ft_strncmp(moov[i], "pa", ft_strlen(moov[i])))
-		|| (!ft_strncmp(moov[i], "pb", ft_strlen(moov[i]))) || (!ft_strncmp(moov[i], "ra", ft_strlen(moov[i])))
-		|| (!ft_strncmp(moov[i], "rb", ft_strlen(moov[i]))) || (!ft_strncmp(moov[i], "rr", ft_strlen(moov[i])))
-		|| (!ft_strncmp(moov[i], "rra", ft_strlen(moov[i]))) || (!ft_strncmp(moov[i], "rrb", ft_strlen(moov[i])))
-		|| (!ft_strncmp(moov[i], "rrr", ft_strlen(moov[i])))))
+		if (!((!ft_strncmp(moov[i], "sa", ft_strlen(moov[i])))
+				|| (!ft_strncmp(moov[i], "sb", ft_strlen(moov[i])))
+				|| (!ft_strncmp(moov[i], "ss", ft_strlen(moov[i])))
+				|| (!ft_strncmp(moov[i], "pa", ft_strlen(moov[i])))
+				|| (!ft_strncmp(moov[i], "pb", ft_strlen(moov[i])))
+				|| (!ft_strncmp(moov[i], "ra", ft_strlen(moov[i])))
+				|| (!ft_strncmp(moov[i], "rb", ft_strlen(moov[i])))
+				|| (!ft_strncmp(moov[i], "rr", ft_strlen(moov[i])))
+				|| (!ft_strncmp(moov[i], "rra", ft_strlen(moov[i])))
+				|| (!ft_strncmp(moov[i], "rrb", ft_strlen(moov[i])))
+				|| (!ft_strncmp(moov[i], "rrr", ft_strlen(moov[i])))))
 		{
-			ft_putstr_fd("Error\nIncorect instruction", 2);
+			ft_putstr_fd("Error\n", 2);
 			return (1);
 		}
 		i++;
 	}
 	return (0);
+}
+
+void	free_moov(char **moov)
+{
+	int	i;
+
+	i = 0;
+	while (moov[i])
+	{
+		free(moov[i]);
+		i++;
+	}
+	free(moov);
 }
 
 //This function execute the list of moov in str, but split with \n
@@ -76,7 +94,9 @@ void	execute_check_moov(char *str, t_DLIST **stackA, t_DLIST **stackB)
 		return ;
 	if (assert_moov(moov))
 	{
-		free(moov);
+		ft_free_chain(*stackA);
+		ft_free_chain(*stackB);
+		free_moov(moov);
 		return ;
 	}
 	while (moov[i])
@@ -88,4 +108,6 @@ void	execute_check_moov(char *str, t_DLIST **stackA, t_DLIST **stackB)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
+	ft_free_chain(*stackA);
+	ft_free_chain(*stackB);
 }
