@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:46:16 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/23 17:26:31 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:01:42 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		find_place(t_DLIST *stack, t_DLIST *node);
 int		index_to_moov(t_DLIST *stack, t_DLIST *node);
 int		bring_it_to_top(t_DLIST *stack, t_DLIST *node);
 int		no_duplicate(char **buffer);
+int 	is_sorted(t_DLIST *stack);
 
 void	execute_check_moov(char *str, t_DLIST **stackA, t_DLIST **stackB);
 void	in_order(t_DLIST **stack);
