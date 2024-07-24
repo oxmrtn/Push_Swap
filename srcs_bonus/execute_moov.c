@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:23:33 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/23 17:26:02 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:43:23 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	execute_check_moov(char *str, t_DLIST **stackA, t_DLIST **stackB)
 		return ;
 	while (moov[i])
 	{
-		execute_moov_bis(moov, &i, stackA, stackB);
+		execute_check_bis(moov, &i, stackA, stackB);
 	}
 	free(moov);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:07:04 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/23 17:31:25 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:44:04 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_sorted(t_DLIST *stack)
 	return (1);
 }
 
-void	init(char *moov, char *args)
+void	init_checker(char *moov, char *args)
 {
 	t_DLIST	*stack_a;
 	t_DLIST	*stack_b;
@@ -68,8 +68,5 @@ int	main(int argc, char **argv)
 		free(temp);
 		temp = get_next_line(0);
 	}
-	if (init(buf, buffer))
-		return (ft_printf("OK"), 1);
-	else
-		return (ft_printf("KO"), 1);
+	init_checker(buf, buffer);
 }

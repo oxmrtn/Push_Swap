@@ -6,24 +6,26 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 15:16:33 by mtrullar          #+#    #+#              #
-#    Updated: 2024/07/23 17:34:42 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/07/24 14:22:47 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 MAKEFLAGS += --no-print-directory
 
 NAME		=	push_swap
+CHECKER		=	checker
 CC			=	clang
 CFLAGS		=	-Wall -Wextra -Werror -g3
 
 #Folders
-INCLUDE		=	incs/
-SRCS_DIR	=	srcs/
-LIBFT		= 	libft/
-OBJ_DIR		=	obj/
+INCLUDE			=	incs/
+SRCS_DIR		=	srcs/
+SRCS_BONUS_DIR	=	srcs_bonus/
+LIBFT			= 	libft/
+OBJ_DIR			=	obj/
 OBJ_BONUS_DIR   =   obj_bonus/
 
-RM			=	@rm -rf
+RM				=	@rm -rf
 
 #Colors
 DEF_COLOR = \033[0;39m
@@ -46,17 +48,23 @@ SRC_FILE =	list_func/basic_func.c			\
 			utils/stack_utils.c				\
 			utils/algo_utils.c				\
 			main.c							\
+		
+SRC_FILE_NO_MAIN = $(filter-out main.c, $(SRC_FILE))
 
-SRC_BONUS_FILE =
-			srcs_checker/main.c				\
-			srcs_checker/execute_moov.c		\		
+SRC_BONUS_FILE =	main_checker.c			\
+					execute_moov.c			\
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRC_FILE))
 OBJ			= $(addprefix $(OBJ_DIR), $(SRC_FILE:.c=.o))
 
-OBJ_BONUS	= $(addprefix $(OBJ_BONUS_DIR), $(SRC_FILE:.c=.o))
+SRCS_NO_MAIN = $(addprefix $(SRCS_DIR), $(SRC_FILE_NO_MAIN))
+OBJ_NO_MAIN  = $(addprefix $(OBJ_DIR), $(SRC_FILE_NO_MAIN:.c=.o))
 
-OBJF		=	.cache_exists
+SRCS_BONUS	= $(addprefix $(SRCS_BONUS_DIR), $(SRC_BONUS_FILE))
+OBJ_BONUS	= $(addprefix $(OBJ_BONUS_DIR), $(SRC_BONUS_FILE:.c=.o))
+
+OBJF			=	.cache_exists
+OBJF_CHECKER	=	.bonus_cache_exists
 
 all: $(NAME)
 
@@ -64,7 +72,20 @@ $(NAME): $(OBJ)
 	@make -C $(LIBFT)
 	@$(CC) -o $(NAME) $(CFLAGS) -I$(INCLUDE) $(OBJ) -Llibft -lcustomft
 	@echo "$(GREEN)\e[1mPUSH_SWAP COMPILED!\e[0m$(DEF_COLOR)"
-	
+
+test:
+	@echo $(SRCS_BONUS);
+	@echo $(OBJ_BONUS);
+
+bonus: $(OBJ_BONUS) $(OBJ_NO_MAIN)
+	@make -C $(LIBFT)
+	@$(CC) -o $(CHECKER) $(CFLAGS) -I$(INCLUDE) $(OBJ_BONUS) $(OBJ_NO_MAIN) -Llibft -lcustomft
+	@echo "$(GREEN)\e[1mCHECKER COMPILED!\e[0m$(DEF_COLOR)"
+
+$(OBJ_BONUS_DIR)%.o: $(SRCS_BONUS_DIR)%.c | $(OBJF_CHECKER)
+	@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
+	@echo "$(MAGENTA)\e[1mCHECKER compiling:\e[0m $< $(DEF_COLOR)"
+		
 $(OBJ_DIR)%.o: $(SRCS_DIR)%.c | $(OBJF)
 	@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
 	@echo "$(MAGENTA)\e[1mPUSH_SWAP compiling:\e[0m $< $(DEF_COLOR)"
@@ -77,17 +98,20 @@ $(OBJF):
 	@mkdir -p $(OBJ_DIR)/algo
 	@mkdir -p $(OBJ_DIR)/utils
 
-checker : 
-	
+$(OBJF_CHECKER):
+	@mkdir -p $(OBJ_BONUS_DIR)
+
 clean:
 	@$(RM) $(OBJ_DIR)
+	@$(RM) $(OBJ_BONUS_DIR)
 	@echo "$(BLUE)Object files cleaned!$(DEF_COLOR)"
 
 fclean: clean
 	@$(RM) $(NAME)
+	@$(RM) $(CHECKER)
 	@echo "$(CYAN)Executable destroyed!$(DEF_COLOR)"
 
 re: fclean all
 	@echo "$(GREEN)\e[1mEverything has been rebuilt, fresh and clean\e[0m$(DEF_COLOR)"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
