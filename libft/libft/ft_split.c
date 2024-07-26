@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:03:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/06/24 14:17:20 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/26 16:21:49 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ char	**ft_split(char *str, char c)
 	int		size;
 
 	size = cpt_words(str, c);
+	if (size == 0)
+		return (NULL);
 	buffer = malloc(sizeof(char *) * (size + 1));
 	if (buffer == NULL)
 		return (NULL);

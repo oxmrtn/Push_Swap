@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:07:04 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/24 17:18:46 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/26 18:00:40 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,6 @@ t_DLIST	*create_list_checker(char *str)
 	return (list);
 }
 
-int	is_sorted(t_DLIST *stack)
-{
-	t_DLIST	*node;
-
-	if (!stack || !stack->next)
-		return (0);
-	node = stack->next;
-	while (node)
-	{
-		if (stack->content < node->content)
-			return (0);
-		stack = node;
-		node = node->next;
-	}
-	return (1);
-}
-
 void	init_checker(char *moov, char **args)
 {
 	t_DLIST	*stack_a;
@@ -77,7 +60,18 @@ void	init_checker(char *moov, char **args)
 		return ;
 	}
 	stack_b = NULL;
+	if (!moov)
+	{
+		if(is_sorted(stack_a, stack_b))
+			ft_printf("OK\n");
+		else
+			ft_printf("KO\n");
+		ft_free_chain(stack_a);
+		ft_free_chain(stack_b);
+		return ;
+	}
 	execute_check_moov(moov, &stack_a, &stack_b);
+	free(moov);
 }
 
 int	main(int argc, char **argv)
@@ -90,13 +84,14 @@ int	main(int argc, char **argv)
 	i = 1;
 	buf = NULL;
 	if (argc < 2)
-		return (ft_putstr_fd("Error", 2), 1);
+		return (ft_putstr_fd("Error\n", 2), 0);
 	while (argv[i])
 	{
-		buf = ft_strjoin(buf, argv[i]);
+		buf = ft_strjoin(buf, argv[i++]);
 		buf = ft_strjoin(buf, " ");
-		i++;
 	}
+	if (ft_checker(buf))
+		return (ft_putstr_fd("Error\n", 2), free(buf), 0);
 	buffer = NULL;
 	temp = get_next_line(0);
 	while (temp)
@@ -106,5 +101,4 @@ int	main(int argc, char **argv)
 		temp = get_next_line(0);
 	}
 	init_checker(buffer, &buf);
-	free(buffer);
 }

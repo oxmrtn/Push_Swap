@@ -6,28 +6,19 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:37:59 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/24 17:07:16 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/26 16:32:46 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/push_swap.h"
 
-int	no_duplicate(char **buffer)
+int	no_duplicate(long content, t_DLIST *stack)
 {
-	int	i;
-	int	j;
-
-	i = 1;
-	while (buffer[i])
+	while (stack)
 	{
-		j = i + 1;
-		while (buffer[j])
-		{
-			if (ft_strncmp(buffer[i], buffer[j], ft_strlen(buffer[i]) + 1) == 0)
-				return (1);
-			j++;
-		}
-		i++;
+		if (stack->content == (int)content)
+			return (1);
+		stack = stack->next;
 	}
 	return (0);
 }
@@ -42,7 +33,10 @@ int	ft_checker(char *str)
 	{
 		if (!(ft_isdigit(str[i]) || (str[i] == ' ')))
 		{
-			if (!((str[i] == '+' || str[i] == '-' ) && ft_isdigit(str[i + 1])))
+			if (!(str[i] == '+' || str[i] == '-' ) && ft_isdigit(str[i + 1]))
+				return (1);
+			else if (str[i - 1 ] && ((str[i] == '+' || str[i] == '-')
+				&& ft_isdigit(str[i - 1])))
 				return (1);
 		}
 		i++;
@@ -50,9 +44,10 @@ int	ft_checker(char *str)
 	return (0);
 }
 
-t_DLIST	*create_list_extends(char **buffer, char *str)
+t_DLIST	*create_list_extends(char **buffer, char *str, t_DLIST *list)
 {
-	ft_putstr_fd("Error\nAt least one argument is not a int", 2);
+	ft_putstr_fd("Error\n", 2);
+	ft_free_chain(list);
 	free_tab(buffer);
 	free(str);
 	return (NULL);
@@ -76,13 +71,12 @@ t_DLIST	*create_list(char *str)
 	while (i >= 0)
 	{
 		temp = ft_atoi(buffer[i]);
-		if (is_int(temp))
-			return (create_list_extends(buffer, str));
+		if (is_int(temp) || no_duplicate(temp, list))
+			return (create_list_extends(buffer, str, list));
 		ft_add_back_dl(&list, temp);
-		free(buffer[i]);
 		i--;
 	}
-	free(buffer);
+	free_tab(buffer);
 	free(str);
 	return (list);
 }

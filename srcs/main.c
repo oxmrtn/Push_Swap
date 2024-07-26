@@ -6,37 +6,59 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:45:43 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/24 17:04:53 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:15:06 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/push_swap.h"
 
+// Main func for the sort
+static void	start_sort(t_DLIST **stack_a, t_DLIST **stack_b)
+{
+	ft_push(stack_a, stack_b);
+	ft_push(stack_a, stack_b);
+	ft_printf("pb\npb\n");
+	if ((*stack_b)->content > (*stack_b)->next->content)
+	{
+		ft_swap_a_b(stack_b);
+		ft_printf("sb\n");
+	}
+	while (len_stack(*stack_a) != 0)
+		find_best_moov(stack_a, stack_b);
+	in_order(stack_b);
+	while (*stack_b)
+	{
+		ft_push(stack_b, stack_a);
+		ft_printf("pa\n");
+	}
+}
+
+// Init chain and determine which sort to use
 void	init(char *buffer)
 {
 	t_DLIST	*stack_a;
 	t_DLIST	*stack_b;
 
 	stack_a = create_list(buffer);
-	if (!stack_a)
-		return ;
 	stack_b = NULL;
-	ft_push(&stack_a, &stack_b);
-	ft_push(&stack_a, &stack_b);
-	ft_printf("pb\npb\n");
-	if (stack_b->content > stack_b->next->content)
+	if (!stack_a || is_sorted(stack_a, stack_b))
 	{
-		ft_swap_a_b(&stack_b);
-		ft_printf("sb\n");
+		ft_free_chain(stack_a);
+		return ;
 	}
-	while (len_stack(stack_a) != 0)
-		find_best_moov(&stack_a, &stack_b);
-	in_order(&stack_b);
-	while (stack_b)
+	if (!stack_a)
 	{
-		ft_push(&stack_b, &stack_a);
-		ft_printf("pa\n");
+		ft_putstr_fd("Error\n", 2);
+		return ;
 	}
+	if (len_stack(stack_a) <= 5)
+	{
+		small_sort(&stack_a, &stack_b);
+		ft_free_chain(stack_a);
+		ft_free_chain(stack_b);
+		return ;
+	}
+	start_sort(&stack_a, &stack_b);
 	ft_free_chain(stack_a);
 	ft_free_chain(stack_b);
 }
@@ -49,9 +71,7 @@ int	main(int argc, char **argv)
 	i = 1;
 	buffer = NULL;
 	if (argc == 1)
-		return (ft_putstr_fd("Error\nPush Swap need argument", 2), 1);
-	if (no_duplicate(argv))
-		return (ft_putstr_fd("Error\nDuplicate argument", 2), 1);
+		return (1);
 	while (argv[i])
 	{
 		buffer = ft_strjoin(buffer, argv[i]);
@@ -59,7 +79,7 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	if (ft_checker(buffer))
-		return (ft_putstr_fd("Error\nInvalid argument", 2), free(buffer), 1);
+		return (ft_putstr_fd("Error\n", 2), free(buffer), 1);
 	init (buffer);
 	return (1);
 }

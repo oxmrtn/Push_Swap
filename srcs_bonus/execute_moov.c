@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:23:33 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/24 17:15:30 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/25 10:26:26 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	execute_check_moov(char *str, t_DLIST **stackA, t_DLIST **stackB)
 		execute_check_bis(moov, &i, stackA, stackB);
 	}
 	free(moov);
-	if (is_sorted(*stackA))
+	if (is_sorted(*stackA, *stackB))
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");

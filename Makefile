@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 15:16:33 by mtrullar          #+#    #+#              #
-#    Updated: 2024/07/24 14:22:47 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/07/26 16:55:28 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,9 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
+BOLD = \e[1m
+RESET = \e[0m
+
 SRC_FILE =	list_func/basic_func.c			\
 			list_func/func.c				\
 			parsing/check_requirements.c	\
@@ -45,6 +48,7 @@ SRC_FILE =	list_func/basic_func.c			\
 			swap_func/swap.c 				\
 			algo/calc_mooves.c				\
 			algo/moov.c						\
+			algo/small_sort.c				\
 			utils/stack_utils.c				\
 			utils/algo_utils.c				\
 			main.c							\
@@ -73,14 +77,12 @@ $(NAME): $(OBJ)
 	@$(CC) -o $(NAME) $(CFLAGS) -I$(INCLUDE) $(OBJ) -Llibft -lcustomft
 	@echo "$(GREEN)\e[1mPUSH_SWAP COMPILED!\e[0m$(DEF_COLOR)"
 
-test:
-	@echo $(SRCS_BONUS);
-	@echo $(OBJ_BONUS);
-
-bonus: $(OBJ_BONUS) $(OBJ_NO_MAIN)
+$(CHECKER): $(OBJ_BONUS) $(OBJ_NO_MAIN)
 	@make -C $(LIBFT)
 	@$(CC) -o $(CHECKER) $(CFLAGS) -I$(INCLUDE) $(OBJ_BONUS) $(OBJ_NO_MAIN) -Llibft -lcustomft
 	@echo "$(GREEN)\e[1mCHECKER COMPILED!\e[0m$(DEF_COLOR)"
+	
+bonus: $(CHECKER)
 
 $(OBJ_BONUS_DIR)%.o: $(SRCS_BONUS_DIR)%.c | $(OBJF_CHECKER)
 	@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
@@ -114,4 +116,42 @@ fclean: clean
 re: fclean all
 	@echo "$(GREEN)\e[1mEverything has been rebuilt, fresh and clean\e[0m$(DEF_COLOR)"
 
-.PHONY: all clean fclean re bonus
+test: $(NAME) $(CHECKER)
+	@echo "$(GREEN)Running tests..."
+	@if [ -z "$(ELT)" ]; then echo "$(RED)Error: Please provide the number of elements to sort (e.g., make test ELT=100 REP=1000 MAX=700)"; exit 1; fi
+	@if [ -z "$(REP)" ]; then echo "$(RED)Error: Please provide the number of repetitions (e.g., make test ELT=100 REP=1000 MAX=700)"; exit 1; fi
+	@if [ -z "$(MAX)" ]; then echo "$(RED)Error: Please provide the maximum number of moves (e.g., make test ELT=100 REP=1000 MAX=700)"; exit 1; fi
+	@TOTAL_MOVES=0; \
+	SUCCESS_COUNT=0; \
+	MIN_MOVES=999999; \
+	MAX_MOVES=0; \
+	for i in $$(seq 1 $(REP)); do \
+	NUMBERS=$$(shuf -i 1-1000 -n $(ELT) | tr '\n' ' '); \
+	ARG="$$NUMBERS"; \
+	RESULT=$$(./$(NAME) $$ARG | ./$(CHECKER) $$ARG); \
+	if [ "$$RESULT" != "OK" ]; then \
+		echo "$(RED)Erreur: Le tri n'a pas réussi pour le test $$i"; \
+		continue; \
+	fi; \
+	MOVES=$$(./$(NAME) $$ARG | wc -l); \
+	TOTAL_MOVES=$$((TOTAL_MOVES + MOVES)); \
+	echo "$(GREEN)Test$(RESET) $(YELLOW)$$i:$(RESET) $(RED)$(BOLD)$$MOVES $(RESET)$(BLUE)coups$(RESET)"; \
+	if [ $$MOVES -lt $$MIN_MOVES ]; then \
+		MIN_MOVES=$$MOVES; \
+	fi; \
+	if [ $$MOVES -gt $$MAX_MOVES ]; then \
+		MAX_MOVES=$$MOVES; \
+	fi; \
+	if [ $$MOVES -lt $(MAX) ]; then \
+		SUCCESS_COUNT=$$((SUCCESS_COUNT + 1)); \
+	fi; \
+	done; \
+	AVERAGE=$$((TOTAL_MOVES / $(REP))); \
+	SUCCESS_PERCENTAGE=$$((SUCCESS_COUNT * 100 / $(REP))); \
+	echo "Moyenne sur $(CYAN)$(BOLD)$(REP)$(RESET) tests avec $(CYAN)$(BOLD)$(ELT)$(RESET) éléments: $(RED)$(BOLD)$$AVERAGE$(RESET) coups"; \
+	echo "Nombre minimum de coups: $(GREEN)$(BOLD)$$MIN_MOVES$(RESET)"; \
+	echo "Nombre maximum de coups: $(RED)$(BOLD)$$MAX_MOVES$(RESET)"; \
+	echo "Nombre de tests avec moins de $(CYAN)$(BOLD)$(MAX)$(RESET) coups: $(GREEN)$(BOLD)$$SUCCESS_COUNT$(RESET)"; \
+	echo "Pourcentage de réussite: $(GREEN)$(BOLD)$$SUCCESS_PERCENTAGE%$(RESET)"
+
+.PHONY: all clean fclean re bonus test
