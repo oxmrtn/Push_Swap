@@ -6,11 +6,31 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 10:27:26 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/26 17:45:47 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/27 01:38:42 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
+
+void	sort_3_bis(t_DLIST **stack, int fst, int scd, int trd)
+{
+	if (fst > scd && scd < trd && fst > trd)
+	{
+		ft_rotate(stack);
+		ft_printf("ra\n");
+	}
+	else if (fst < scd && scd > trd && fst < trd)
+	{
+		ft_swap_a_b(stack);
+		ft_rotate(stack);
+		ft_printf("sa\nra\n");
+	}
+	else if (fst < scd && scd > trd && fst > trd)
+	{
+		ft_reverse_rotate(stack);
+		ft_printf("rra\n");
+	}
+}
 
 // The optimal way to sort 3 numbers
 void	sort_3(t_DLIST **stackA)
@@ -35,22 +55,8 @@ void	sort_3(t_DLIST **stackA)
 		ft_swap_a_b(stackA);
 		ft_printf("sa\n");
 	}
-	else if (fst > scd && scd < trd && fst > trd)
-	{
-		ft_rotate(stackA);
-		ft_printf("ra\n");
-	}
-	else if (fst < scd && scd > trd && fst < trd)
-	{
-		ft_swap_a_b(stackA);
-		ft_rotate(stackA);
-		ft_printf("sa\nra\n");
-	}
-	else if (fst < scd && scd > trd && fst > trd)
-	{
-		ft_reverse_rotate(stackA);
-		ft_printf("rra\n");
-	}
+	else
+		sort_3_bis(stackA, fst, scd, trd);
 }
 
 // The optimal way to sort 4 numbers

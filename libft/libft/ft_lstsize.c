@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:38:58 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/06/24 10:53:32 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/27 01:35:14 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	ft_lstsize(t_list *lst)
 	current = lst;
 	while (current->next)
 	{
-			i++;
-			current = current->next;
+		i++;
+		current = current->next;
 	}
 	return (i);
 }

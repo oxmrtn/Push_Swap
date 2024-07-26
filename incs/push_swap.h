@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:46:16 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/25 15:07:39 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/27 01:19:10 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,17 @@ typedef struct t_NK
 	int	j;
 }				t_NK;
 
+typedef struct t_DAT
+{
+	int	count;
+	int	count_dest;
+	int	nbr_moov;
+}				t_DAT;
+
 t_DLIST	*ft_last_node(t_DLIST *node);
 t_DLIST	*ft_first_node(t_DLIST *node);
 t_DLIST	*create_list(char *str);
-t_MOOV	*calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest);
+t_DAT	calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest);
 
 int		what_max(t_DLIST *stack);
 int		find_max(t_DLIST *stack);
@@ -53,6 +60,7 @@ int		no_duplicate(long content, t_DLIST *stack);
 int		is_sorted(t_DLIST *stack_A, t_DLIST *stack_B);
 int		is_int(long nbr);
 
+void	moov_to_do(int count, int count_dest, char **moov);
 void	small_sort(t_DLIST **stack_A, t_DLIST **stack_B);
 void	execute_check_moov(char *str, t_DLIST **stackA, t_DLIST **stackB);
 void	in_order(t_DLIST **stack);

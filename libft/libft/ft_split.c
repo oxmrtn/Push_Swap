@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:03:25 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/26 16:21:49 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/27 01:34:59 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static char	**split_bis(char **buffer, char *str, char c)
 			if (!buffer[buffer_index])
 				return (free_all(buffer, buffer_index));
 			ft_strlcpy(buffer[buffer_index], &str[j], (i - j + 2));
-		buffer_index++;
+			buffer_index++;
 		}
 		if (str[i++] == c && str[i] != c)
 			j = i;

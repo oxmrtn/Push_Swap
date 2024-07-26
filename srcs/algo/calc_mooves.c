@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:48:44 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/25 16:14:56 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/27 01:18:51 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	moov_to_do_bis(int	*count, int *count_dest, char **buffer)
 }
 
 //Merge into a buffer the moov to do
-void	moov_to_do(int count, int count_dest, t_MOOV *moov)
+void	moov_to_do(int count, int count_dest, char **moov)
 {
 	char	*buffer;
 
@@ -61,48 +61,46 @@ void	moov_to_do(int count, int count_dest, t_MOOV *moov)
 			moov_to_do_bis(&count, &count_dest, &buffer);
 	}
 	buffer = ft_strjoin(buffer, " pb");
-	moov->buffer = buffer;
+	*moov = buffer;
 }
 
 //Just an other part of hr_moov
-t_MOOV	*hr_moov_bis(int count, int count_dest, t_MOOV *moov)
+t_DAT	hr_moov_bis(int count, int count_dest, t_DAT *moov)
 {
 	if (count < 0)
-		return (moov->nmoov = (-1 * count) + count_dest, moov);
+		return ((*moov).nbr_moov = (-1 * count) + count_dest, *moov);
 	else
-		return (moov->nmoov = count + (-1 * count_dest), moov);
+		return ((*moov).nbr_moov = count + (-1 * count_dest), *moov);
 }
 
 //Return a struct containing a buffer with moove
 //to do and number of moov to moov a certain element
-t_MOOV	*hr_moov(int count, int count_dest)
+t_DAT	hr_moov(int count, int count_dest)
 {
-	t_MOOV	*moov;
+	t_DAT	moov;
 
-	moov = malloc(sizeof(t_MOOV));
-	if (!moov)
-		return (NULL);
-	moov_to_do(count, count_dest, moov);
+	moov.count = count;
+	moov.count_dest = count_dest;
 	if (count <= 0 && count_dest <= 0)
 	{
 		if (count < count_dest)
-			return (moov->nmoov = (-1 * count) + 1, moov);
+			return (moov.nbr_moov = (-1 * count) + 1, moov);
 		else
-			return (moov->nmoov = (-1 * count_dest) + 1, moov);
+			return (moov.nbr_moov = (-1 * count_dest) + 1, moov);
 	}
 	else if (count >= 0 && count_dest >= 0)
 	{
 		if (count > count_dest)
-			return (moov->nmoov = count + 1, moov);
+			return (moov.nbr_moov = count + 1, moov);
 		else
-			return (moov->nmoov = count_dest + 1, moov);
+			return (moov.nbr_moov = count_dest + 1, moov);
 	}
 	else
-		return (hr_moov_bis(count, count_dest, moov));
+		return (hr_moov_bis(count, count_dest, &moov));
 }
 
 //Meta func that contains every func
-t_MOOV	*calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest)
+t_DAT	calc_moov(t_DLIST *node, t_DLIST *origin, t_DLIST *dest)
 {
 	int			count;
 	int			count_dest;

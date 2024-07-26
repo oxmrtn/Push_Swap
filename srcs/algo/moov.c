@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 12:41:19 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/26 17:57:53 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/27 01:19:34 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,41 +54,36 @@ void	execute_moov(char *str, t_DLIST **stackA, t_DLIST **stackB)
 }
 
 // Just an other part of find_best_moov
-void	find_best_moov_bis(t_MOOV *res, t_DLIST **stackA, t_DLIST **stackB)
+void	find_best_moov_bis(char *buffer, t_DLIST **stackA, t_DLIST **stackB)
 {
-	execute_moov(res->buffer, stackA, stackB);
-	if (res->buffer)
-		free(res->buffer);
-	free(res);
+	execute_moov(buffer, stackA, stackB);
+	if (buffer)
+		free(buffer);
 }
 
 // This function test every moves for the differents nodes and execute 
 // the best option
 void	find_best_moov(t_DLIST **stackA, t_DLIST **stackB)
 {
-	t_MOOV	*res;
-	t_MOOV	*temp;
+	t_DAT	res;
+	t_DAT	temp;
 	t_DLIST	*node;
+	char	*buf;
 
-	res = malloc(sizeof(t_MOOV));
-	if (!res)
-		return ;
-	res->nmoov = 2147483647;
-	res->buffer = NULL;
+	res.nbr_moov = 2147483647;
+	buf = NULL;
 	node = *stackA;
 	while (node)
 	{
 		temp = calc_moov(node, *stackA, *stackB);
-		if (temp->nmoov < res->nmoov)
+		if (temp.nbr_moov < res.nbr_moov)
 		{
-			res->nmoov = temp->nmoov;
-			if (res->buffer)
-				free(res->buffer);
-			res->buffer = ft_strdup(temp->buffer);
+			res.nbr_moov = temp.nbr_moov;
+			res.count = temp.count;
+			res.count_dest = temp.count_dest;
 		}
 		node = node->next;
-		free(temp->buffer);
-		free(temp);
 	}
-	find_best_moov_bis(res, stackA, stackB);
+	moov_to_do(res.count, res.count_dest, &buf);
+	find_best_moov_bis(buf, stackA, stackB);
 }

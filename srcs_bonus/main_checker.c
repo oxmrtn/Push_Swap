@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 17:07:04 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/26 18:00:40 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/27 01:35:45 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	init_checker(char *moov, char **args)
 	stack_b = NULL;
 	if (!moov)
 	{
-		if(is_sorted(stack_a, stack_b))
+		if (is_sorted(stack_a, stack_b))
 			ft_printf("OK\n");
 		else
 			ft_printf("KO\n");

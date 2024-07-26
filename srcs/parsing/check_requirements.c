@@ -6,7 +6,7 @@
 /*   By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:37:59 by mtrullar          #+#    #+#             */
-/*   Updated: 2024/07/26 16:32:46 by mtrullar         ###   ########.fr       */
+/*   Updated: 2024/07/27 01:41:11 by mtrullar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	ft_checker(char *str)
 		{
 			if (!(str[i] == '+' || str[i] == '-' ) && ft_isdigit(str[i + 1]))
 				return (1);
-			else if (str[i - 1 ] && ((str[i] == '+' || str[i] == '-')
-				&& ft_isdigit(str[i - 1])))
+			else if (str[i - 1] && ((str[i] == '+' || str[i] == '-')
+					&& ft_isdigit(str[i - 1])))
 				return (1);
 		}
 		i++;
