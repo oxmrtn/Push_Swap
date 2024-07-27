@@ -1,6 +1,7 @@
 # PUSH SWAP
 
-##Hello 👋
+Hello 👋
+
 Here is my implementation of 42 project PUSH_SWAP 🖥️
 
 This is the first time we consider complexity of an algorithm.
