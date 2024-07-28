@@ -6,7 +6,7 @@
 #    By: mtrullar <mtrullar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/05 15:16:33 by mtrullar          #+#    #+#              #
-#    Updated: 2024/07/26 16:55:28 by mtrullar         ###   ########.fr        #
+#    Updated: 2024/07/28 18:10:46 by mtrullar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,6 +111,7 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(CHECKER)
+	@make fclean -sC $(LIBFT)
 	@echo "$(CYAN)Executable destroyed!$(DEF_COLOR)"
 
 re: fclean all
